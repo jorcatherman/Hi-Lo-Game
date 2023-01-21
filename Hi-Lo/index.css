@@ -1,0 +1,38 @@
+.container{
+    border: 1px solid black;
+    max-width: 50px;
+    min-height:28px;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 25px;
+
+}
+#number-el{
+    margin:0;
+}
+.button-container{
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+.high-low-buttons{
+    width:125px;
+    height:50px;
+    background-color: #04aa6d;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 30px;
+    font-family: Calibri;
+    cursor:pointer;
+}
+input{
+    width:150px;
+    height: 25px;
+    border: 2px solid red;
+}
+#bet-button-el{
+    background-color: aquamarine;
+    height:30px;
+}
