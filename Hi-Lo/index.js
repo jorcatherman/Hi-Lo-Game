@@ -62,14 +62,12 @@ function highOrLow(){
         guessEl.innerText = "The number is high!"
         resultTextEl.innerText = "You lost!"
         newNumber = randomNumber
-        user.points -= bettingNumber
     }
     else if(randomNumber < guessingNumber && user.high !== false){
         numberEl.innerText = randomNumber.toString();
         guessEl.innerText = "The number is low!"
         resultTextEl.innerText = "You lost!"
         newNumber = randomNumber
-        user.points -= bettingNumber
     }
     else{
         numberEl.innerText = randomNumber.toString();
