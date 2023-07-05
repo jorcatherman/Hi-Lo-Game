@@ -1,3 +1,4 @@
+
 let user = {
     high: false,
     low: false,
@@ -22,6 +23,59 @@ numberEl.innerText = currentNumber.toString()
 userPointsEl.innerText = `Your current points: ${user.points}`
 betEl.innerText = `Your current bet: ${currentBet}`
 
+
+function highOrLow(){
+    if(currentBet < 1){
+        return guessEl.innerText = "Place a bet!"
+    }
+    let bettingNumber = parseInt(currentBet)
+    let guessingNumber = parseInt(currentNumber)
+    let randomNumber = Math.floor(Math.random() * 100) + 1
+    let newNumber = 0
+    switch (true) {
+        case (randomNumber > guessingNumber && user.high === true):
+            numberEl.innerText = randomNumber.toString();
+            guessEl.innerText = "The number is high!";
+            resultTextEl.innerText = "You won!";
+            newNumber = randomNumber;
+            user.points += bettingNumber * 2;
+            break;
+
+        case (randomNumber < guessingNumber && user.low === true):
+            numberEl.innerText = randomNumber.toString();
+            guessEl.innerText = "The number is low!";
+            resultTextEl.innerText = "You won!";
+            newNumber = randomNumber;
+            user.points += bettingNumber * 2;
+            break;
+
+        case (randomNumber > guessingNumber && user.high !== true):
+            numberEl.innerText = randomNumber.toString();
+            guessEl.innerText = "The number is high!";
+            resultTextEl.innerText = "You lost!";
+            newNumber = randomNumber;
+            break;
+
+        case (randomNumber < guessingNumber && user.high !== false):
+            numberEl.innerText = randomNumber.toString();
+            guessEl.innerText = "The number is low!";
+            resultTextEl.innerText = "You lost!";
+            newNumber = randomNumber;
+            break;
+
+        default:
+            numberEl.innerText = randomNumber.toString();
+            guessEl.innerText = "Same number, try again!";
+            break;
+    }
+    currentNumber = newNumber
+    user.high = false
+    user.low = false
+    currentBet = 0
+    betEl.textContent= `Your current bet: ${currentBet}`
+    userPointsEl.innerText = `Your current points: ${user.points}`
+}
+
 betButtonEl.addEventListener("click", function(){
     let bettingNumber = parseInt(bettingNumberEl.value)
     if(bettingNumber > user.points){
@@ -36,50 +90,8 @@ betButtonEl.addEventListener("click", function(){
     bettingNumberEl.value = ""
 
 })
-function highOrLow(){
-    if(currentBet < 1){
-        return guessEl.innerText = "Place a bet!"
-    }
-    let bettingNumber = parseInt(currentBet)
-    let guessingNumber = parseInt(currentNumber)
-    let randomNumber = Math.floor(Math.random() * 100) + 1
-    let newNumber = 0
-    if(randomNumber > guessingNumber && user.high === true){
-        numberEl.innerText = randomNumber.toString();
-        guessEl.innerText = "The number is high!"
-        resultTextEl.innerText = "You won!"
-        newNumber = randomNumber
-        user.points += bettingNumber
 
-    } else if (randomNumber < guessingNumber && user.low === true){
-        numberEl.innerText = randomNumber.toString();
-        guessEl.innerText = "The number is low!"
-        resultTextEl.innerText = "You won!"
-        newNumber = randomNumber
-        user.points += bettingNumber
-    } else if(randomNumber > guessingNumber && user.high !== true){
-        numberEl.innerText = randomNumber.toString();
-        guessEl.innerText = "The number is high!"
-        resultTextEl.innerText = "You lost!"
-        newNumber = randomNumber
-    }
-    else if(randomNumber < guessingNumber && user.high !== false){
-        numberEl.innerText = randomNumber.toString();
-        guessEl.innerText = "The number is low!"
-        resultTextEl.innerText = "You lost!"
-        newNumber = randomNumber
-    }
-    else{
-        numberEl.innerText = randomNumber.toString();
-        guessEl.innerText = "Same number, try again!"
-    }
-    currentNumber = newNumber
-    user.high = false
-    user.low = false
-    currentBet = 0
-    betEl.textContent= `Your current bet: ${currentBet}`
-    userPointsEl.innerText = `Your current points: ${user.points}`
-}
+
 
 highButtonEl.addEventListener("click", function(){
     user.high = true;

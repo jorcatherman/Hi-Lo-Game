@@ -1,0 +1,7 @@
+{
+  "name": "Hi-Lo",
+  "version": "1.0.0",
+  "dependencies": {
+    "toastify-js": "^1.12.0"
+  }
+}
