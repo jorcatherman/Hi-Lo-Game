@@ -25,7 +25,7 @@ betEl.innerText = `Your current bet: ${currentBet}`
 
 
 function highOrLow(){
-    if(currentBet < 1){
+    if(!currentBet){
         return guessEl.innerText = "Place a bet!"
     }
     let bettingNumber = parseInt(currentBet)
@@ -78,9 +78,21 @@ function highOrLow(){
 
 betButtonEl.addEventListener("click", function(){
     let bettingNumber = parseInt(bettingNumberEl.value)
+    if(!bettingNumber){
+        return guessEl.innerText = "Place a bet!"
+    }
     if(bettingNumber > user.points){
+        Toastify({
+            text:"You don't have enough points!",
+            duration: 3000,
+            gravity: 'top',
+            position: 'center',
+            backgroundColor: '#ff0000',
+            stopOnFocus: true
+        }).showToast()
         return bettingTextEl.innerText = "You don't have enough points!"
     }else{
+        console.log('got here')
         bettingTextEl.innerText = ""
         currentBet += bettingNumber
         user.points -= bettingNumber
@@ -88,8 +100,8 @@ betButtonEl.addEventListener("click", function(){
     betEl.textContent= `Your current bet: ${currentBet}`
     userPointsEl.innerText = `Your current points: ${user.points}`
     bettingNumberEl.value = ""
-
 })
+
 
 
 
